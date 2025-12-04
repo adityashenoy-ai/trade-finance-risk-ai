@@ -1,0 +1,7 @@
+shipment_id,date,carrier,status,delay_days,value
+SHP1,2024-01-05,CarrierX,delivered,0,120000
+SHP2,2024-01-12,CarrierX,delivered,1,80000
+SHP3,2024-02-03,CarrierX,issue,7,150000
+SHP4,2024-02-15,CarrierX,delivered,0,60000
+SHP5,2024-03-10,CarrierX,delivered,0,100000
+SHP6,2024-03-25,CarrierX,issue,5,90000
