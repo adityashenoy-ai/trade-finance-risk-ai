@@ -20,6 +20,42 @@ if "OPENAI_API_KEY" in st.secrets:
     client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # ---------------- Sidebar inputs ----------------
+
+import os
+import pandas as pd
+
+st.sidebar.subheader("Data Source")
+
+use_sample = st.sidebar.checkbox("Use Sample Data Instead of Uploading Files")
+
+sample_path = "sample_data/"   # folder inside repo
+
+if use_sample:
+    gst_df = pd.read_csv(os.path.join(sample_path, "sample_gst.csv"))
+    ship_df = pd.read_csv(os.path.join(sample_path, "sample_shipments.csv"))
+    bank_df = pd.read_csv(os.path.join(sample_path, "sample_bank.csv"))
+    fx_df = pd.read_csv(os.path.join(sample_path, "sample_fx.csv"))
+    profile_df = pd.read_csv(os.path.join(sample_path, "sample_profile.csv"))
+
+    st.success("Loaded sample datasets from the repository!")
+else:
+    gst_file = st.file_uploader("Upload GST CSV")
+    ship_file = st.file_uploader("Upload Shipment CSV")
+    bank_file = st.file_uploader("Upload Bank Statement CSV")
+    fx_file = st.file_uploader("Upload FX Exposure CSV")
+    profile_file = st.file_uploader("Upload SME Profile CSV")
+
+    if gst_file and ship_file and bank_file and fx_file and profile_file:
+        gst_df = pd.read_csv(gst_file)
+        ship_df = pd.read_csv(ship_file)
+        bank_df = pd.read_csv(bank_file)
+        fx_df = pd.read_csv(fx_file)
+        profile_df = pd.read_csv(profile_file)
+    else:
+        st.warning("Upload all 5 files OR enable 'Use Sample Data'.")
+        st.stop()
+
+
 with st.sidebar:
     st.header("Upload Data (CSV)")
     gst_file = st.file_uploader("GST / Sales CSV (date, taxable_value, gstin, gstin_buyer optional)", type=["csv"])
