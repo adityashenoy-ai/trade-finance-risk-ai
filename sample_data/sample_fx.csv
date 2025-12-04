@@ -1,0 +1,5 @@
+date,currency,amount_in_base,direction
+2024-01-31,USD,50000,long
+2024-02-28,USD,-20000,short
+2024-03-31,EUR,30000,long
+2024-04-30,USD,0,flat
