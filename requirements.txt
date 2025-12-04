@@ -1,0 +1,5 @@
+streamlit
+pandas
+numpy
+openai>=1.0.0
+pydeck
